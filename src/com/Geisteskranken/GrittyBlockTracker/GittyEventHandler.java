@@ -18,30 +18,22 @@ public class GittyEventHandler {
 	
 	public static final ExecutorService SQLQueue = Executors.newFixedThreadPool(2);
 	
-	// Called when a player breaks a block
 		@On(event = EventBlockBreak.class)
 		public void event(EventBlockBreak evt) {
-				//final String BlockType = String.valueOf(blocktype);
+
 				Block block = evt.getBlock();
 				BlockType BlockType = block.getType();
 				String Block = BlockType.getName();
 
-				// Converts the dt object to X, Y, and Z variables
-				//final int X = BBcoords.n();
-				//final int Y = BBcoords.o();
-				//final int Z = BBcoords.p();
 				Location coords = block.getLocation();
 				double X = coords.getX();
 				double Y = coords.getY();
 				double Z = coords.getZ();
 
-				// Isolates the playername from the ahd object
-				//final String Player = player.d_();
 				Player player = evt.getPlayer();
 				String Player = player.getName();
 				player.sendMessage(Block);
 
-				// Insert to DB
 				SQLQueue.execute(new Runnable() {
 					public void run() {
 						GrittyBlockTrackerSQL.insertBlockBreak(Player, X, Y, Z,
@@ -50,25 +42,18 @@ public class GittyEventHandler {
 				});
 		}
 
-		// Called when a player places a block
 		@On(event = EventBlockPlace.class)
 		public void event(EventBlockPlace evt) {
-				//final String BlockType = String.valueOf(blocktype);
+
 				Block block = evt.getBlock();
 				BlockType BlockType = block.getType();
 				String Block = BlockType.getName();
 
-				// Converts the dt object to X, Y, and Z variables
-				//final int X = BBcoords.n();
-				//final int Y = BBcoords.o();
-				//final int Z = BBcoords.p();
 				Location coords = block.getLocation();
 				double X = coords.getX();
 				double Y = coords.getY();
 				double Z = coords.getZ();
 
-				// Isolates the playername from the ahd object
-				//final String Player = player.d_();
 				Player player = evt.getPlayer();
 				String Player = player.getName();
 				player.sendMessage(Block);
