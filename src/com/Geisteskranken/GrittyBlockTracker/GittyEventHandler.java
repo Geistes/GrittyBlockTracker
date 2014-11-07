@@ -19,7 +19,7 @@ public class GittyEventHandler {
 	public static final ExecutorService SQLQueue = Executors.newFixedThreadPool(2);
 	
 		@On(event = EventBlockBreak.class)
-		public void event(EventBlockBreak evt) {
+		public void OnBreak(EventBlockBreak evt) {
 
 				Block block = evt.getBlock();
 				BlockType BlockType = block.getType();
@@ -43,7 +43,7 @@ public class GittyEventHandler {
 		}
 
 		@On(event = EventBlockPlace.class)
-		public void event(EventBlockPlace evt) {
+		public void OnPlace(EventBlockPlace evt) {
 
 				Block block = evt.getBlock();
 				BlockType BlockType = block.getType();
